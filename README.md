@@ -8,5 +8,7 @@
 
  Readme text here
 
+**Value:** __GEOMETRY_INPUT__
+
 
 
