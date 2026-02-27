@@ -108,8 +108,8 @@
     },
     {
       "atomType": "Code",
-      "x": 0.6770480704129993,
-      "y": 0.6149253731343284,
+      "x": 0.6958234830575256,
+      "y": 0.5850746268656717,
       "uniqueID": "id-24",
       "ioValues": [
         {
@@ -127,28 +127,29 @@
         }
       ],
       "codeVersion": 1,
-      "code": " \n      //Inputs:[inputShape, dist, height]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n      \n      const Inputs = [\n       {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n        {inputName: \"height\", type: \"number\", defaultValue: 10},\n        {inputName: \"thickness\", type: \"number\", defaultValue: 4},\n      ]\n      //Takes the address and gets the shape from the library\n      let importedShape = library[shape]\n      console.log(importedShape)\n      //This makes a new copy of of the shape (to prevent garbage collection issues),\n      //and moves it in the X direction. Note that this will not work if the input is an assembly\n      let movedShape = importedShape.geometry[0].clone().shell(thickness, (f) => f.inPlane(\"XY\", 0));\n      \n      \n      //Shapes stored in the library have tags, a color, a plane, and a bill of materials like this. We don't modify them here\n      let shape1 = {\n        geometry: [movedShape],\n        tags: importedShape.tags,\n        color: importedShape.color,\n        plane: importedShape.plane,\n        bom: importedShape.bom\n      }\n      \n      //We could at this point return shape1 as a complete shape and it will be automatically written to the library for us\n      return shape1\n      \n      //We can also create a new shape from scratch\n      let createdRectangle = replicad.drawRectangle(5,7)\n      //This is the plane we are going to put our new shape on\n      const newPlane = new Plane().pivot(0, 'Y');\n      //And we extrude the shape to make it 3D\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(height)\n      \n      //For our new geometry we need to define the tags, color, plane, etc\n      let shape2 = {\n          geometry: [createdShape], \n          tags: [\"aTag\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n      \n      \n          /**\n          To Use the Code Atom, enter your inputs to the input list a.e Inputs:[shape, height]\n          If your input is connected to another atom with a replicad geometry you can access its geometry by looking up its ID in your library. a.e library[Input1].geometry[0] \n          Use any replicad available methods to modify your geometry. Learn more about all of the available methods at \n          https://replicad.xyz/docs/introapp/UserGuide.html \n          Return a replicad object that includes geometry, color, tags and plane. \n      \n      \n          Example Code Atom:\n      \n            Inputs:[shape, x];\n      \n            let finalShape = library[shape].geometry[0].clone.translate[x,0,0]\n      \n            return {geometry: finalShape, color: library[shape].color, plane: library[shape].plane, tags: library[shape].tags }\n      \n            - See more examples at _______ \n      \n      \n          */\n      "
+      "code": " \n      //Inputs:[inputShape, dist, height]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n      \n      const Inputs = [\n       {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n        {inputName: \"height\", type: \"number\", defaultValue: 10},\n        {inputName: \"thickness\", type: \"number\", defaultValue: 3},\n      ]\n      //Takes the address and gets the shape from the library\n      let importedShape = library[shape]\n      console.log(importedShape)\n      //This makes a new copy of of the shape (to prevent garbage collection issues),\n      //and moves it in the X direction. Note that this will not work if the input is an assembly\n      let movedShape = importedShape.geometry[0].clone().shell(thickness, (f) => f.inPlane(\"XY\", 0));\n      \n      \n      //Shapes stored in the library have tags, a color, a plane, and a bill of materials like this. We don't modify them here\n      let shape1 = {\n        geometry: [movedShape],\n        tags: importedShape.tags,\n        color: importedShape.color,\n        plane: importedShape.plane,\n        bom: importedShape.bom\n      }\n      \n      //We could at this point return shape1 as a complete shape and it will be automatically written to the library for us\n      return shape1\n      \n      //We can also create a new shape from scratch\n      let createdRectangle = replicad.drawRectangle(5,7)\n      //This is the plane we are going to put our new shape on\n      const newPlane = new Plane().pivot(0, 'Y');\n      //And we extrude the shape to make it 3D\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(height)\n      \n      //For our new geometry we need to define the tags, color, plane, etc\n      let shape2 = {\n          geometry: [createdShape], \n          tags: [\"aTag\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n      \n      \n          /**\n          To Use the Code Atom, enter your inputs to the input list a.e Inputs:[shape, height]\n          If your input is connected to another atom with a replicad geometry you can access its geometry by looking up its ID in your library. a.e library[Input1].geometry[0] \n          Use any replicad available methods to modify your geometry. Learn more about all of the available methods at \n          https://replicad.xyz/docs/introapp/UserGuide.html \n          Return a replicad object that includes geometry, color, tags and plane. \n      \n      \n          Example Code Atom:\n      \n            Inputs:[shape, x];\n      \n            let finalShape = library[shape].geometry[0].clone.translate[x,0,0]\n      \n            return {geometry: finalShape, color: library[shape].color, plane: library[shape].plane, tags: library[shape].tags }\n      \n            - See more examples at _______ \n      \n      \n          */\n      "
     },
     {
       "atomType": "Rectangle",
-      "x": 0.3209207853757617,
-      "y": 0.9074626865671642,
+      "x": 0.32498307379823965,
+      "y": 0.9313432835820896,
       "uniqueID": "id-33",
       "ioValues": [
         {
           "name": "x length",
-          "ioValue": 10
+          "ioValue": 50
         },
         {
           "name": "y length",
-          "ioValue": 10
+          "ioValue": 50,
+          "currentEquation": "50"
         }
       ]
     },
     {
       "atomType": "Loft",
-      "x": 0.5429925524712255,
-      "y": 0.7522388059701492,
+      "x": 0.570527974783294,
+      "y": 0.7074626865671642,
       "uniqueID": "id-37",
       "ioValues": [
         {
@@ -166,7 +167,7 @@
         {
           "name": "Shape 1",
           "ioValue": {
-            "geometry": "move-rotate-circle-19.5-0-0-0-50-0-0",
+            "geometry": "move-rotate-circle-19.5-0-0-0--50-0-0",
             "dimension": "2D",
             "tags": [],
             "plane": {
@@ -193,7 +194,7 @@
         {
           "name": "Shape 2",
           "ioValue": {
-            "geometry": "rectangle-10-10",
+            "geometry": "rectangle-50-50",
             "dimension": "2D",
             "plane": {
               "origin": [
@@ -226,8 +227,8 @@
     },
     {
       "atomType": "Rotate",
-      "x": 0.3175355450236967,
-      "y": 0.6626865671641792,
+      "x": 0.31956668923493564,
+      "y": 0.6805970149253732,
       "uniqueID": "id-40",
       "ioValues": [
         {
@@ -252,8 +253,8 @@
     },
     {
       "atomType": "Move",
-      "x": 0.4515910629654705,
-      "y": 0.6985074626865672,
+      "x": 0.4129235618597321,
+      "y": 0.47761194029850745,
       "uniqueID": "id-47",
       "ioValues": [
         {
@@ -262,8 +263,8 @@
         },
         {
           "name": "xDist",
-          "ioValue": 50,
-          "currentEquation": "50"
+          "ioValue": -50,
+          "currentEquation": "-50"
         },
         {
           "name": "yDist",
