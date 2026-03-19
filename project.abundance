@@ -252,8 +252,8 @@
     },
     {
       "atomType": "Difference",
-      "x": 0.6322188449848024,
-      "y": 0.7981927710843374,
+      "x": 0.6028368794326241,
+      "y": 0.7650602409638555,
       "uniqueID": "id-58",
       "ioValues": [
         {
@@ -286,8 +286,8 @@
     },
     {
       "atomType": "Code",
-      "x": 0.723404255319149,
-      "y": 0.5542168674698795,
+      "x": 0.7173252279635258,
+      "y": 0.6385542168674698,
       "uniqueID": "id-143",
       "ioValues": [
         {
@@ -300,7 +300,7 @@
         }
       ],
       "codeVersion": 1,
-      "code": " \n      //Inputs:[inputShape, dist, height]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n      \n      const Inputs = [\n       {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n        {inputName: \"thickness\", type: \"number\", defaultValue: 3},\n      ]\n      //Takes the address and gets the shape from the library\n      let importedShape = library[shape]\n      console.log(\"imported shape\",importedShape)\n\n     let planex = replicad.makePlane(\"XY\")\n\n      //This makes a new copy of of the shape (to prevent garbage collection issues),\n      //and moves it in the X direction. Note that this will not work if the input is an assembly\n      let movedShape = importedShape.geometry[0].clone().shell(-1.1,  (face) =>\n    face.inPlane(\"XY\"));\n\n  console.log(movedShape)\n      \n      //Shapes stored in the library have tags, a color, a plane, and a bill of materials like this. We don't modify them here\n      let shape1 = {\n        geometry: [movedShape],\n        tags: importedShape.tags,\n        color: importedShape.color,\n        plane: importedShape.plane,\n        bom: importedShape.bom\n      }\n      \n      //We could at this point return shape1 as a complete shape and it will be automatically written to the library for us\n      return shape1\n      "
+      "code": " \n      //Inputs:[inputShape, dist, height]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n      \n      const Inputs = [\n       {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n        {inputName: \"thickness\", type: \"number\", defaultValue: 3},\n      ]\n      //Takes the address and gets the shape from the library\n      let importedShape = library[shape]\n      console.log(\"imported shape\",importedShape)\n\n     let planex = replicad.makePlane(\"XY\")\n\n      //This makes a new copy of of the shape (to prevent garbage collection issues),\n      //and moves it in the X direction. Note that this will not work if the input is an assembly\n      let movedShape = importedShape.geometry[0].clone().shell(-1.1,  (face) =>\n    face.inPlane(\"XY\"))\nconsole.log(\"movedShape\", movedShape)\n\n      let solidShell = replicad.makeSolid([movedShape])\n\n  console.log(\"solidShell\",solidShell)\n      \n      //Shapes stored in the library have tags, a color, a plane, and a bill of materials like this. We don't modify them here\n      let shape1 = {\n        geometry: [solidShell],\n        tags: importedShape.tags,\n        color: importedShape.color,\n        plane: importedShape.plane,\n        bom: importedShape.bom\n      }\n      \n      //We could at this point return shape1 as a complete shape and it will be automatically written to the library for us\n      return shape1\n      "
     },
     {
       "atomType": "Circle",
@@ -343,8 +343,8 @@
     },
     {
       "atomType": "Move",
-      "x": 0.707193515704154,
-      "y": 0.8584337349397589,
+      "x": 0.7041540020263424,
+      "y": 0.8765060240963856,
       "uniqueID": "id-156",
       "ioValues": [
         {
@@ -362,24 +362,23 @@
         },
         {
           "name": "zDist",
-          "ioValue": 2,
-          "currentEquation": "2"
+          "ioValue": 0
         }
       ]
     },
     {
-      "atomType": "Assembly",
-      "x": 0.7912867274569403,
-      "y": 0.7409638554216867,
-      "uniqueID": "id-166",
+      "atomType": "Difference",
+      "x": 0.7872340425531915,
+      "y": 0.7560240963855422,
+      "uniqueID": "id-171",
       "ioValues": [
         {
-          "name": "Shape 1",
-          "ioValue": null
+          "name": "geometry1",
+          "ioValue": "__GEOMETRY_INPUT__"
         },
         {
-          "name": "Shape 2",
-          "ioValue": null
+          "name": "geometry2",
+          "ioValue": "__GEOMETRY_INPUT__"
         }
       ]
     }
@@ -461,9 +460,9 @@
       "ap2ID": 1738957856438
     },
     {
-      "ap2Name": "Shape 2",
+      "ap2Name": "geometry2",
       "ap1ID": "id-143",
-      "ap2ID": "id-166"
+      "ap2ID": "id-171"
     },
     {
       "ap2Name": "geometry",
@@ -476,9 +475,9 @@
       "ap2ID": "id-58"
     },
     {
-      "ap2Name": "Shape 1",
+      "ap2Name": "geometry1",
       "ap1ID": "id-156",
-      "ap2ID": "id-166"
+      "ap2ID": "id-171"
     }
   ],
   "unitsKey": "MM",
